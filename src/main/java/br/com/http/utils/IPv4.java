@@ -161,4 +161,9 @@ public class IPv4 implements IP {
 	public boolean isIPv6() {
 		return false;
 	}
+
+	@Override
+	public String toString() {
+		return address;
+	}
 }
