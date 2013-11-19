@@ -151,4 +151,14 @@ public class IPv4 implements IP {
 	public boolean matches(IP ip) {
 		return ip.toLong() >= rangeStart && ip.toLong() <= rangeEnd;
 	}
+
+	@Override
+	public boolean isIPv4() {
+		return true;
+	}
+
+	@Override
+	public boolean isIPv6() {
+		return false;
+	}
 }

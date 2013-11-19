@@ -13,4 +13,8 @@ public interface IP {
 	byte[] toBytes();
 
 	boolean matches(IP ip);
+
+	boolean isIPv4();
+
+	boolean isIPv6();
 }
