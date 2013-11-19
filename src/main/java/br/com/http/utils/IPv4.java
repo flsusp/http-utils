@@ -7,6 +7,28 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Represents an IPv4 address and uses 32-bit (four-byte) addresses representation. IPv4 addresses may be written in any
+ * notation expressing a 32-bit integer value, but for human convenience this class uses the dot-decimal notation, which
+ * consists of four octets of the address expressed individually in decimal and separated by periods (from 0.0.0.0 to
+ * 255.255.255.255).
+ * 
+ * This class also supports the CIDR notation, which is a compact representation of an IP address and its associated
+ * routing prefix. The notation is constructed from the IP address and the prefix size, the latter being equivalent to
+ * the number of leading 1 bits in the routing prefix mask. The IP address is expressed according to the standards of
+ * IPv4. It is followed by a separator character, the slash ('/') character, and the prefix size expressed as a decimal
+ * number. The address may denote a single, distinct interface address or the beginning address of an entire network.
+ * The maximum size of the network is given by the number of addresses that are possible with the remaining,
+ * least-significant bits below the prefix. This is often called the host identifier. For example:
+ * 
+ * <ul>
+ * <li>192.168.100.0/24 represents the given IPv4 address and its associated routing prefix 192.168.100.0, or
+ * equivalently, its subnet mask 255.255.255.0.</li>
+ * <li>the IPv4 block 192.168.100.0/22 represents the 1,024 IPv4 addresses from 192.168.100.0 to 192.168.103.255.</li>
+ * </ul>
+ * 
+ * @author flsusp
+ */
 public class IPv4 implements IP {
 
 	private static final Pattern IPv4_PATTERN = Pattern
