@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
  * notation expressing a 32-bit integer value, but for human convenience this class uses the dot-decimal notation, which
  * consists of four octets of the address expressed individually in decimal and separated by periods (from 0.0.0.0 to
  * 255.255.255.255).
- * 
+ *
  * This class also supports the CIDR notation, which is a compact representation of an IP address and its associated
  * routing prefix. The notation is constructed from the IP address and the prefix size, the latter being equivalent to
  * the number of leading 1 bits in the routing prefix mask. The IP address is expressed according to the standards of
@@ -20,13 +20,13 @@ import org.apache.commons.lang3.StringUtils;
  * number. The address may denote a single, distinct interface address or the beginning address of an entire network.
  * The maximum size of the network is given by the number of addresses that are possible with the remaining,
  * least-significant bits below the prefix. This is often called the host identifier. For example:
- * 
+ *
  * <ul>
  * <li>192.168.100.0/24 represents the given IPv4 address and its associated routing prefix 192.168.100.0, or
  * equivalently, its subnet mask 255.255.255.0.</li>
  * <li>the IPv4 block 192.168.100.0/22 represents the 1,024 IPv4 addresses from 192.168.100.0 to 192.168.103.255.</li>
  * </ul>
- * 
+ *
  * @author flsusp
  */
 public class IPv4 implements IP {
@@ -54,7 +54,7 @@ public class IPv4 implements IP {
 			throw new InvalidIPv4Exception(address);
 		}
 
-		if (!IPv4_PATTERN.matcher(address).matches()) {
+		if (!isIPv4(address)) {
 			throw new InvalidIPv4Exception(address);
 		}
 
@@ -62,6 +62,10 @@ public class IPv4 implements IP {
 		this.rangeStart = getAddressAsLong(removeIPClass(address));
 		this.rangeEnd = getAddressAsLong(toString(calculateHigherIPAddressAccordingToClass(toBytes(),
 				extractIPClass(address))));
+	}
+
+	public static boolean isIPv4(String address) {
+		return IPv4_PATTERN.matcher(address).matches();
 	}
 
 	protected static String toString(byte[] bytes) {
