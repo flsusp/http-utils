@@ -21,7 +21,7 @@ public class StubIPv6 implements IP {
 
 	@Override
 	public long toLong() {
-		throw new UnsupportedOperationException();
+		return 0;
 	}
 
 	@Override
